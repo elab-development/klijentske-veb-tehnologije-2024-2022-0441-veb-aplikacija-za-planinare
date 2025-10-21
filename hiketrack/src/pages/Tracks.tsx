@@ -1,13 +1,9 @@
-<<<<<<< HEAD
 import { useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
-=======
->>>>>>> upstream/main
 import TrailCard from '../components/TrailCard';
 import { TRAILS } from '../data/trails';
 import { LOCATIONS } from '../data/locations';
 
-<<<<<<< HEAD
 const PER_PAGE = 12;
 
 export default function Tracks() {
@@ -37,9 +33,6 @@ export default function Tracks() {
     setParams(params);
   };
 
-=======
-export default function Tracks() {
->>>>>>> upstream/main
   return (
     <section>
       <header className='mb-6'>
@@ -48,21 +41,15 @@ export default function Tracks() {
         </h1>
       </header>
 
-<<<<<<< HEAD
       <div
         id='tracks-grid'
         className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'
       >
         {pagedTrails.map((trail) => {
-=======
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5'>
-        {TRAILS.map((trail) => {
->>>>>>> upstream/main
           const location = LOCATIONS.find((l) => l.id === trail.locationId);
           return <TrailCard key={trail.id} trail={trail} location={location} />;
         })}
       </div>
-<<<<<<< HEAD
 
       <div className='mt-8 flex items-center justify-center gap-2'>
         <button
@@ -101,11 +88,8 @@ export default function Tracks() {
       </div>
 
       <p className='mt-3 text-center text-sm text-stone-600'>
-        Page {safePage} of {totalPages} • Showing {pagedTrails.length} /{' '}
-        {TRAILS.length}
+        Page {safePage} of {totalPages} • Showing {pagedTrails.length} / {TRAILS.length}
       </p>
-=======
->>>>>>> upstream/main
     </section>
   );
 }

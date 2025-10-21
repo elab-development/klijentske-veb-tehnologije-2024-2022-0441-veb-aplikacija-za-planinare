@@ -1,4 +1,5 @@
 import { MapPin, Mountain, Clock, Route } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import type { Trail, Location } from '../data/types';
 
 type Props = {
@@ -8,7 +9,10 @@ type Props = {
 
 export default function TrailCard({ trail, location }: Props) {
   return (
-    <article className='bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md transition'>
+    <Link
+      to={`/tracks/${trail.id}`}
+      className='block bg-white rounded-xl overflow-hidden border border-stone-200 shadow-sm hover:shadow-md hover:scale-[1.01] transition'
+    >
       {location?.imageUrl ? (
         <img
           src={location.imageUrl}
@@ -78,6 +82,6 @@ export default function TrailCard({ trail, location }: Props) {
           Type: {trail.type.replaceAll('-', ' ')}
         </div>
       </div>
-    </article>
+    </Link>
   );
 }
