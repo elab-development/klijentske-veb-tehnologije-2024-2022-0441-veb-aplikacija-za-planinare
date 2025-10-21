@@ -3,6 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { MapPin, Mountain, Clock, Route, ArrowLeft } from 'lucide-react';
 import { TRAILS } from '../data/trails';
 import { LOCATIONS } from '../data/locations';
+import MapView from '../components/MapView';
 
 export default function Track() {
   const { id } = useParams<{ id: string }>();
@@ -67,35 +68,19 @@ export default function Track() {
             <Clock className='w-4 h-4' />
             <span>{trail.estTimeH} h estimated</span>
           </div>
-          <span className='inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium capitalize bg-stone-100 text-stone-700'>
-            Type: {trail.type.replaceAll('-', ' ')}
-          </span>
-          <span
-            className={
-              'inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium capitalize ' +
-              (trail.difficulty === 'easy'
-                ? 'bg-emerald-100 text-emerald-800'
-                : trail.difficulty === 'moderate'
-                ? 'bg-amber-100 text-amber-800'
-                : 'bg-rose-100 text-rose-800')
-            }
-          >
-            Difficulty: {trail.difficulty}
-          </span>
         </div>
 
-        {trail.tags?.length ? (
-          <div className='flex flex-wrap gap-2 mt-4'>
-            {trail.tags.map((t) => (
-              <span
-                key={t}
-                className='text-xs bg-stone-100 text-stone-700 px-2 py-0.5 rounded'
-              >
-                {t}
-              </span>
-            ))}
-          </div>
-        ) : null}
+        {trail.startLat && trail.startLon ? (
+          <MapView
+            lat={trail.startLat}
+            lon={trail.startLon}
+            label={trail.name}
+          />
+        ) : (
+          <p className='text-sm text-stone-500 italic'>
+            No map data available for this trail.
+          </p>
+        )}
       </div>
     </section>
   );
