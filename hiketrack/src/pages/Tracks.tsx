@@ -131,15 +131,7 @@ export default function Tracks() {
     setParams(next);
   };
 
-  const clearFilters = () => {
-    const next = new URLSearchParams(params);
-    next.delete('location');
-    next.delete('type');
-    next.delete('difficulty');
-    next.set('page', '1');
-    setParams(next);
-    clearFiltersFromStorage();
-  };
+  
 
   return (
     <section>
